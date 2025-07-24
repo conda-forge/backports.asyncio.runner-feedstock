@@ -16,7 +16,7 @@ source:
   sha256: a5aa7b2b7d8f8bfcaa2b57313f70792df84e32a2a746f585213373f900b42162
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script:
     - if: is_noop == "false"
