@@ -25,18 +25,18 @@ description = "List contents of all packages found in rattler-build build direct
 [tasks.build]
 cmd = "rattler-build build --recipe recipe"
 description = "Build backports.asyncio.runner-feedstock directly (without setup scripts), no particular variant specified"
-[tasks."build-linux_64_is_noopfalse"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_is_noopfalse.yaml"
-description = "Build backports.asyncio.runner-feedstock with variant linux_64_is_noopfalse directly (without setup scripts)"
-[tasks."inspect-linux_64_is_noopfalse"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_is_noopfalse.yaml"
-description = "List contents of backports.asyncio.runner-feedstock packages built for variant linux_64_is_noopfalse"
-[tasks."build-linux_64_is_nooptrue"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_is_nooptrue.yaml"
-description = "Build backports.asyncio.runner-feedstock with variant linux_64_is_nooptrue directly (without setup scripts)"
-[tasks."inspect-linux_64_is_nooptrue"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_is_nooptrue.yaml"
-description = "List contents of backports.asyncio.runner-feedstock packages built for variant linux_64_is_nooptrue"
+[tasks."build-linux_64_python_min3.11"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_python_min3.11.yaml"
+description = "Build backports.asyncio.runner-feedstock with variant linux_64_python_min3.11 directly (without setup scripts)"
+[tasks."inspect-linux_64_python_min3.11"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_python_min3.11.yaml"
+description = "List contents of backports.asyncio.runner-feedstock packages built for variant linux_64_python_min3.11"
+[tasks."build-linux_64_python_min3.9"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_python_min3.9.yaml"
+description = "Build backports.asyncio.runner-feedstock with variant linux_64_python_min3.9 directly (without setup scripts)"
+[tasks."inspect-linux_64_python_min3.9"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_python_min3.9.yaml"
+description = "List contents of backports.asyncio.runner-feedstock packages built for variant linux_64_python_min3.9"
 
 [feature.smithy.dependencies]
 conda-smithy = "*"

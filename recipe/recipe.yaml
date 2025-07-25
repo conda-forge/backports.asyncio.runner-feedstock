@@ -3,6 +3,7 @@ schema_version: 1
 
 context:
   version: "1.2.0"
+  python_max: "3.11"
 
 package:
   name: backports.asyncio.runner
@@ -13,11 +14,10 @@ source:
   sha256: a5aa7b2b7d8f8bfcaa2b57313f70792df84e32a2a746f585213373f900b42162
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script:
-    - if: is_noop == "false"
-      then: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+    - ${{ PYTHON }} ${{ RECIPE_DIR }}/build_backports_asyncio_runner.py
 
 requirements:
   host:
@@ -28,19 +28,17 @@ requirements:
   run:
     - python >=${{ python_min }}
   run_constraints:
-    - if: noop == "true"
-      then: python >=3.11
-      else: python <3.11
+    - python >=${{ python_min }}{% if python_min != python_max %},<${{ python_max }}{% endif %}
 
 tests:
-  - if: is_noop == "false"
+  - if: python_min != python_max
     then:
       python:
         imports: backports.asyncio.runner
         pip_check: true
         python_version:
           - ${{ python_min }}.*
-  - if: is_noop == "false"
+  - if: python_min != python_max
     then:
       requirements:
         run:
@@ -54,7 +52,7 @@ tests:
         - python -c "from pathlib import Path; [p.unlink() for p in Path('tests').glob('test_tasks_*.py')]"
         - coverage run --source=backports.asyncio.runner --branch -m pytest -vv --tb=long --color=yes
         - coverage report --show-missing --skip-covered --fail-under=91
-  - if: is_noop == "false"
+  - if: python_min != python_max
     then:
       requirements:
         run:
