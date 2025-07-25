@@ -3,9 +3,6 @@ schema_version: 1
 
 context:
   version: "1.2.0"
-  # linter complains if any of this is done with if/then/else below
-  python_min: ${{ "3.11" if is_noop == "true" else python_min }}
-  python_max: ${{ ""     if is_noop == "true" else ",<3.11" }}
 
 package:
   name: backports.asyncio.runner
@@ -31,7 +28,9 @@ requirements:
   run:
     - python >=${{ python_min }}
   run_constraints:
-    - python >=${{ python_min }}${{ python_max }}
+    - if: noop == "true"
+      then: python >=3.11
+      else: python <3.11
 
 tests:
   - if: is_noop == "false"
